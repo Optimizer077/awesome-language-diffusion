@@ -2,13 +2,13 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](LICENSE)
-![Papers](https://img.shields.io/badge/papers-150%2B-blue)
+![Papers](https://img.shields.io/badge/papers-190%2B-blue)
 ![Topics](https://img.shields.io/badge/topics-16-orange)
 ![Last updated](https://img.shields.io/badge/updated-2026--07-informational)
 
 > A curated, aggressively-sourced list of papers, models, code, and resources on **diffusion models for language** — text, code, and discrete-token sequences.
 >
-> **150+ verified references** spanning foundations → discrete/masked theory → 7B–100B diffusion LLMs → multimodal, reasoning, coding, RL, inference, safety, and evaluation.
+> **190+ verified references** spanning foundations → discrete/masked theory → 7B–100B diffusion LLMs → multimodal/VLA, reasoning, coding, RL, inference, safety, and evaluation.
 
 Language diffusion (a.k.a. **diffusion language models, dLLMs, discrete/masked diffusion LMs**) generates text by *iteratively denoising* a whole sequence in parallel instead of predicting one token left-to-right. In 2024–2026 this went from a research curiosity to **8B–100B open models (LLaDA, Dream, LLaDA-MoE/2.0)** and **frontier products (Mercury, Gemini Diffusion, Seed Diffusion)** that reach **1000–2000+ tokens/s**.
 
@@ -27,6 +27,7 @@ This list is organized so you can read it as a *learning path* (foundations → 
   - [1.1 Core diffusion (continuous)](#11-core-diffusion-continuous)
   - [1.2 Discrete diffusion theory](#12-discrete-diffusion-theory)
   - [1.3 Masked / absorbing diffusion (modern)](#13-masked--absorbing-diffusion-modern)
+  - [1.4 Advanced theory: samplers, correctors, distillation & likelihood](#14-advanced-theory-samplers-correctors-distillation--likelihood)
 - [2. Early & continuous text diffusion](#2-early--continuous-text-diffusion)
   - [2.1 Continuous / embedding diffusion LMs](#21-continuous--embedding-diffusion-lms)
   - [2.1b Discrete & any-order text diffusion (pre-dLLM)](#21b-discrete--any-order-text-diffusion-pre-dllm)
@@ -158,6 +159,26 @@ The theory that made discrete diffusion competitive with AR.
 | **GIDD: Generalized Interpolating Discrete Diffusion** | arXiv'25 | [abs](https://arxiv.org/abs/2503.04482) | Unifies masking and uniform-noise diffusion; enables self-correction. |
 | **The Diffusion Duality (Duo)** | ICML'25 | [abs](https://arxiv.org/abs/2506.10892) | Links uniform-state discrete diffusion to Gaussian diffusion → curriculum training + consistency distillation. |
 
+### 1.4 Advanced theory: samplers, correctors, distillation & likelihood
+
+| Paper | Venue | Links | TL;DR |
+|---|---|---|---|
+| **Informed Correctors for Discrete Diffusion** | arXiv'24 | [abs](https://arxiv.org/abs/2407.21243) | Model-informed predictor-corrector sampler + hollow transformer; sharply cuts few-step error. |
+| **DDPD: Think While You Generate (Planned Denoising)** | ICLR'25 | [abs](https://arxiv.org/abs/2410.06264) | Splits generation into a planner (which position to fix) + denoiser; Gillespie-based adaptive sampler. |
+| **Train for the Worst, Plan for the Best (token ordering)** | ICML'25 🏆 | [abs](https://arxiv.org/abs/2502.06768) | Theory of MDM train/inference tradeoff: adaptive any-order inference can beat fixed-order AR on planning. |
+| **Any-Order GPT as Masked Diffusion Model** | arXiv'25 | [abs](https://arxiv.org/abs/2506.19935) | Decouples the any-order-AR objective from architecture; clarifies AO-ARM ↔ masked-diffusion equivalence. |
+| **TCSM: Target Concrete Score Matching** | ICML'25 | [abs](https://arxiv.org/abs/2504.16431) | Unifies training, distillation & reward fine-tuning under one target-concrete-score objective. |
+| **Di4C: Distillation through Dimensional Correlations** | ICML'25 | [abs](https://arxiv.org/abs/2410.08709) | Few-step distillation capturing inter-dimensional correlations lost by factorized denoisers. |
+| **Fast Sampling via Non-Markov Discrete Diffusion** | NeurIPS'24 | [abs](https://arxiv.org/abs/2312.09193) | Predetermined transition times enable faster, higher-quality sampling than Markov chains. |
+| **CEDD: Efficient Perplexity Bound & Ratio Matching** | arXiv'25 | [abs](https://arxiv.org/abs/2507.04341) | Tightens the ELBO/perplexity bound; cross-entropy training beats direct ratio matching (SEDD family). |
+| **Convergence of Score-Based Discrete Diffusion** | arXiv'25 | [abs](https://arxiv.org/abs/2410.02321) | Discrete-time KL convergence bounds (score/discretization/truncation) for CTMC discrete diffusion. |
+| **Discrete State Diffusion: A Sample-Complexity Perspective** | arXiv'25 | [abs](https://arxiv.org/abs/2510.10854) | Learning-theoretic sample-complexity bounds complementing convergence analyses. |
+| **DUEL: Exact Likelihood via Deterministic Unmasking** | arXiv'26 | [abs](https://arxiv.org/abs/2603.01367) | Derives exact (non-ELBO) any-order likelihood for masked diffusion. |
+| **Variational Masked Diffusion Models** | arXiv'25 | [abs](https://arxiv.org/abs/2510.23606) | Adds latent variables to capture inter-token dependencies factorized denoisers miss. |
+| **Latent-Augmented Discrete Diffusion** | arXiv'25 | [abs](https://arxiv.org/abs/2510.18114) | Continuous latents feed soft probabilities to the denoiser, lowering training variance. |
+| **LatentLM: Multimodal Latent LM w/ Next-Token Diffusion** | arXiv'24 | [abs](https://arxiv.org/abs/2412.08635) | Continuous-latent alternative: generate VAE latents via next-token diffusion; unifies discrete+continuous. |
+| **Edit Flows: Flow Matching with Edit Operations** | arXiv'25 | [abs](https://arxiv.org/abs/2506.09018) | CTMC over variable-length sequences via insert/delete/substitute — insertion-deletion alternative to masking. |
+
 ---
 
 ## 2. Early & continuous text diffusion
@@ -228,6 +249,8 @@ The 2025 breakthrough: masked diffusion at 7B–100B, competitive with AR LLMs.
 | **DiffuLLaMA / DiffuGPT — Scaling via Adaptation from AR** | ICLR'25 | [abs](https://arxiv.org/abs/2410.17891) · [code](https://github.com/HKUNLP/DiffuLLaMA) | Converts GPT2/LLaMA (127M–7B) into diffusion LMs with <200B tokens — cheap recipe. |
 | **RND1 (30B/3B-active MoE, from Qwen3)** | report'25 | [report](https://www.radicalnumerics.ai/assets/rnd1_report.pdf) · [HF](https://huggingface.co/radicalnumerics) | Largest open dLLM at release; open AR→diffusion (A2D) recipe. |
 | **TESS 2 — Generalist Diffusion LM** | ACL'25 | [abs](https://arxiv.org/abs/2502.13917) | Instruction-following generalist dLLM via AR adaptation + inference-time reward guidance. |
+| **OpenMoE 2: Sparse Diffusion Language Models** | project'25 | [code](https://github.com/JinjieNi/OpenMoE2) | From-scratch study of expert-choice MoE × diffusion LMs with open checkpoints/logs. |
+| **TraDo-8B (TraceRL)** | arXiv'25 | [abs](https://arxiv.org/abs/2509.06949) | First long-CoT diffusion LLM, trained with trajectory-aware RL on block diffusion (see §7). |
 
 ### 3.2 Frontier / commercial dLLMs
 
@@ -286,8 +309,9 @@ Interpolating between autoregression and diffusion to recover KV-cache & quality
 | **CoDA: Coding LM via Diffusion Adaptation** | arXiv'25 | [abs](https://arxiv.org/abs/2510.03270) | Tiny 1.7B code dLLM (from Qwen3-1.7B) matching up to 7B diffusion models. |
 | **Beyond Autoregression: Empirical Study of dLLMs for Code** | arXiv'25 | [abs](https://arxiv.org/abs/2509.11252) | Quantifies multi-token + flexible-order advantages for non-sequential code editing. |
 | **The Bitter Lesson of Diffusion LMs for Agentic Workflows** | ACL'26 | [abs](https://arxiv.org/abs/2601.12979) | Reality check (DiffuAgent framework): current dLLMs fail at causal planning / strict-JSON tool calls, help in non-causal roles. |
-| **Dream-VL & Dream-VLA** | arXiv'25 | [abs](https://arxiv.org/abs/2512.22615) | Diffusion-backbone VLM/VLA; native bidirectionality suits action chunking & visual planning. |
 | **DLLM-Searcher: dLLMs as Search Agents** | arXiv'26 | [abs](https://arxiv.org/abs/2602.07035) | Parallel reason-and-act paradigm turning dLLMs into retrieval/tool-using agents. |
+
+*(See also [Dream-VL & Dream-VLA](#vision-language-action-robotics) under Vision-Language-Action.)*
 
 ---
 
@@ -301,6 +325,7 @@ Interpolating between autoregression and diffusion to recover KV-cache & quality
 | **GDPO: Group Diffusion Policy/Preference Optimization** | arXiv'25 | [abs](https://arxiv.org/abs/2510.08554) | Low-variance sequence-level RL; outperforms diffu-GRPO on reasoning/planning/coding. |
 | **DiFFPO: Reason Fast and Furious via RL** | arXiv'25 | [abs](https://arxiv.org/abs/2510.02212) | Jointly optimizes reasoning quality + few-step sampling. |
 | **DMPO: Distribution Matching Policy Optimization** | arXiv'25 | [abs](https://arxiv.org/abs/2510.08233) | Distribution-matching RL objective avoiding mean-field likelihood bias. |
+| **TraDo-8B / TraceRL: Trajectory-Aware RL** | arXiv'25 | [abs](https://arxiv.org/abs/2509.06949) · [code](https://github.com/Gen-Verse/dLLM-RL) | Trajectory-aware RL on SDAR block diffusion → TraDo-8B-Thinking, first long-CoT diffusion LLM. |
 
 ---
 
@@ -328,6 +353,17 @@ Interpolating between autoregression and diffusion to recover KV-cache & quality
 | **Show-o2: Native Unified Multimodal Models** | arXiv'25 | [abs](https://arxiv.org/abs/2506.15564) | Scales to image+video via 3D causal VAE + flow-matching heads. |
 | **CoDi: Any-to-Any via Composable Diffusion** | NeurIPS'23 | [abs](https://arxiv.org/abs/2305.11846) | Bridges per-modality latents to condition/generate any mix of text/image/video/audio. |
 | **JanusFlow: Autoregression + Rectified Flow** | arXiv'24 | [abs](https://arxiv.org/abs/2411.07975) | Rectified flow inside an LLM with decoupled encoders for unified understanding+generation. |
+| **FUDOKI: Discrete Flow-Matching Unified MLLM** | NeurIPS'25 | [abs](https://arxiv.org/abs/2505.20147) | Purely discrete-flow-matching unified MLLM with self-correcting understanding + image generation. |
+| **Muddit: Unified Discrete Diffusion w/ T2I Priors** | arXiv'25 | [abs](https://arxiv.org/abs/2505.23606) | Reuses pretrained T2I visual priors for fast parallel text+image generation. |
+
+### Vision-Language-Action (robotics)
+
+| Paper | Venue | Links | TL;DR |
+|---|---|---|---|
+| **Discrete Diffusion VLA** | arXiv'25 | [abs](https://arxiv.org/abs/2508.20072) | First discrete-diffusion action decoding in one VLA transformer; 96.3% LIBERO with fewer evals. |
+| **dVLA: Diffusion VLA w/ Multimodal CoT** | arXiv'25 | [abs](https://arxiv.org/abs/2509.25681) | Built on MMaDA + FAST action tokens for interpretable manipulation policies. |
+| **Unified Diffusion VLA** | arXiv'25 | [abs](https://arxiv.org/abs/2511.01718) | Joint discrete denoising: understand, predict future images, and generate actions in one process. |
+| **Dream-VL & Dream-VLA** | arXiv'25 | [abs](https://arxiv.org/abs/2512.22615) | Diffusion-backbone VLM/VLA; bidirectionality suits action chunking (97.2% LIBERO). |
 
 ---
 
@@ -348,7 +384,21 @@ The KV-cache + parallel-decoding problem is *the* practical bottleneck for dLLMs
 | **WINO: Wide-In, Narrow-Out Revokable Decoding** | arXiv'25 | [abs](https://arxiv.org/abs/2507.18578) | Training-free draft-and-verify with re-masking makes parallel decoding reversible. |
 | **Self Speculative Decoding for dLLMs** | arXiv'25 | [abs](https://arxiv.org/abs/2510.04147) | The dLLM drafts & verifies itself via hierarchical verification trees. |
 | **ParallelBench: Trade-offs of Parallel Decoding** | arXiv'25 | [abs](https://arxiv.org/abs/2510.04767) | Benchmark isolating when parallel token commitment breaks dependencies. |
-| **DiMO / DLM-One: one-step generation** | arXiv'25 | [abs](https://arxiv.org/abs/2509.25035) · [abs](https://arxiv.org/abs/2506.00290) | Distill dLLMs into (near) one-step generators for ultra-fast decoding. |
+| **DiMO / DiDi-Instruct / DLM-One: one/few-step generation** | arXiv'25 | [abs](https://arxiv.org/abs/2509.25035) · [abs](https://arxiv.org/abs/2506.00290) | Distill dLLMs into (near) one-step generators for ultra-fast decoding. |
+| **Prophet: dLLMs Know the Answer Before Decoding** | arXiv'25 | [abs](https://arxiv.org/abs/2508.19982) | Early-commit decoding exploiting answer convergence (top-2 gap); up to 3.4× fewer steps. |
+| **EB-Sampler: Entropy-Bounded Unmasking** | arXiv'25 | [abs](https://arxiv.org/abs/2505.24857) | Drop-in sampler unmasking many tokens/step under an entropy budget; 2–3× speedup, no quality loss. |
+| **CreditDecoding: Trace Credits** | arXiv'25 | [abs](https://arxiv.org/abs/2510.06133) | Accumulates historical logits to converge underconfident-but-correct tokens; 5.48× on LLaDA-8B. |
+| **LocalLeap: Local Determinism Propagation** | arXiv'25 | [abs](https://arxiv.org/abs/2510.07081) | Training-free adaptive parallel decoding around high-confidence anchors. |
+| **Set Block Decoding** | arXiv'25 | [abs](https://arxiv.org/abs/2509.04185) | Unifies next-token + masked-token prediction; parallel non-consecutive tokens with exact KV-cache. |
+| **Learn2PD: Learnable Parallel Decoding** | arXiv'25 | [abs](https://arxiv.org/abs/2509.25188) | Lightweight filter predicts per-token correctness to adaptively unmask; up to 22.58× speedup. |
+| **Dilated Scheduling (Plan for Speed)** | arXiv'25 | [abs](https://arxiv.org/abs/2506.19037) | Unmasks well-separated token groups in parallel; up to 5.8× faster, complements per-token samplers. |
+| **Learning Unmasking Policies (RL)** | arXiv'25 | [abs](https://arxiv.org/abs/2512.09106) | RL-trained policies decide which tokens to unmask, beating hand-crafted heuristics. |
+| **SchED: Progress-Aware Confidence Schedules** | arXiv'25 | [abs](https://arxiv.org/abs/2512.02892) | Training-free early-exit schedule keyed to logit confidence; 3.8–4.0× faster. |
+| **FlashDLM / FreeCache** | arXiv'25 | [abs](https://arxiv.org/abs/2505.21467) | Training-free KV caching + guided diffusion; 12.14× speedup, closing gap to AR. |
+| **Sparse-dLLM: Dynamic Cache Eviction** | arXiv'25 | [abs](https://arxiv.org/abs/2508.02558) | Sparse attention + delayed bidirectional cache eviction; up to 10× throughput. |
+| **d²Cache: Dual Adaptive Caching** | arXiv'25 | [abs](https://arxiv.org/abs/2509.23094) | Selectively updates token KV states for faster *and* higher-quality inference. |
+| **CDLM: Consistent Diffusion Language Models** | arXiv'26 | [abs](https://arxiv.org/abs/2605.00161) | Single-stage teacher-free multi-path consistency training; SOTA few-step sampling. |
+| **HERALD: CPU-GPU Cooperative KV Serving** | arXiv'26 | [abs](https://arxiv.org/abs/2606.21633) | Serving system offloading/retrieving KV across CPU-GPU for block-diffusion throughput. |
 
 ---
 
@@ -451,6 +501,9 @@ Discrete diffusion over non-text token sequences — the techniques transfer dir
 | **DPLM-2: Multimodal Diffusion Protein LM** | arXiv'24 | [abs](https://arxiv.org/abs/2410.13782) | Jointly diffuses sequence + tokenized 3D structure (co-generation, folding, inverse folding). |
 | **EvoDiff: Protein Generation with Evolutionary Diffusion** | bioRxiv'23 | [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.09.11.556673) | Evolutionary-scale discrete diffusion protein design in sequence space. |
 | **Discrete Diffusion for Text-Aligned Speech Tokens** | arXiv'25 | [abs](https://arxiv.org/abs/2509.20060) | Replaces AR speech-token decoder with discrete diffusion → better reconstruction, ASR, speed. |
+| **DiSTAR: Discrete Diffusion over Token AR Representation** | arXiv'25 | [abs](https://arxiv.org/abs/2510.12210) | Discrete diffusion over a scalable token-AR representation for speech generation. |
+| **VocalNet-MDM: Streaming Speech LLM via Masked Diffusion** | arXiv'26 | [abs](https://arxiv.org/abs/2602.08607) | Self-distilled masked diffusion + hierarchical block masking; 3.7–10× decode speedup over AR. |
+| **LaDA-Band: Language-Diffusion for Music Accompaniment** | arXiv'26 | [abs](https://arxiv.org/abs/2604.11052) | Language-diffusion model for vocal-to-accompaniment music generation. |
 
 ---
 
