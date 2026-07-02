@@ -1,13 +1,14 @@
 # 📚 PAPERS — Master Index
 
-Complete, sortable index of **311 papers** in [Awesome Language Diffusion](README.md), newest first. Year/month derived from arXiv ID. This file is the exhaustive companion to the curated, topically-organized `README.md`.
+Complete, sortable index of **356 papers** in [Awesome Language Diffusion](README.md), newest first. Year/month derived from arXiv ID. This file is the exhaustive companion to the curated, topically-organized `README.md`.
 
-> 186 in the curated README sections + 125 from the deep gap-sweep. Links are arXiv abstract pages.
+> 231 in the curated README sections (incl. the masking/unmasking section) + 125 in the extended deep gap-sweep index. Links are arXiv abstract pages.
 
 ## Count by category
 
 | Category | Papers |
 |---|---|
+| 17. Masking, noise schedules & unmasking order | 45 |
 | 1. Foundations & theory | 38 |
 | 11. Applications | 36 |
 | 9. Inference & acceleration | 36 |
@@ -30,14 +31,20 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 
 | Date | Paper | Category | Link |
 |---|---|---|---|
+| 2026-06 | Revise, Don't Freeze: Sampler-Matched Training for Self-Correcting Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.01026) |
 | 2026-06 | Knowledge Editing in Masked Diffusion Language Models | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2606.03924) |
 | 2026-06 | MaskForge: Structure-Aware Adaptive Attacks for Jailbreaking Diffusion Large Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2606.04027) |
+| 2026-06 | Supportive Token Revealing for Fast Diffusion Language Model Decoding | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.04236) |
 | 2026-06 | Global Sketch-Based Watermarking for Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2606.04486) |
 | 2026-06 | Dynamic Infilling Anchors for Format-Constrained Generation in Diffusion Large Language Models | 11. Applications | [abs](https://arxiv.org/abs/2606.04535) |
+| 2026-06 | NAVIRA: Decoupled Stochastic Remasking for Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.06031) |
 | 2026-06 | Hacking Generative Perplexity: Why Unconditional Text Evaluation Needs Distributional Metrics | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2606.08417) |
+| 2026-06 | Attention-Discounted Adaptive Sampler for Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.10829) |
 | 2026-06 | Re-evaluating Confidence Remasking in Masked Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2606.12232) |
 | 2026-06 | TimeROME-DLM: Temporal Causal Tracing and Low-Rank Inference-Time Knowledge Editing for Masked Diffusion Language Models | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2606.12841) |
 | 2026-06 | Efficient On-Device Diffusion LLM Inference with Mobile NPU | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2606.13740) |
+| 2026-06 | Neither Parallel Nor Sequential: How DiffusionGemma Actually Commits Tokens | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.14620) |
+| 2026-06 | Mean-Field Parallel Decoding for Discrete Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2606.15805) |
 | 2026-06 | Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2606.19315) |
 | 2026-06 | Where to Place the Query? Unveiling and Mitigating Positional Bias in In-Context Learning for Diffusion LLMs via Decoding Dynamics | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2606.19349) |
 | 2026-06 | Diffusion Language Models: An Experimental Analysis | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2606.19475) |
@@ -45,6 +52,7 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2026-05 | CDLM: Consistent Diffusion Language Models | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2605.00161) |
 | 2026-05 | DiffRetriever: Parallel Representative Tokens for Retrieval with Diffusion Language Models | 11. Applications | [abs](https://arxiv.org/abs/2605.07210) |
 | 2026-05 | The Safety-Aware Denoiser for Text Diffusion Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2605.08116) |
+| 2026-05 | Edit-Based Refinement for Parallel Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2605.09603) |
 | 2026-05 | Primal-Dual Guided Decoding for Constrained Discrete Diffusion | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2605.09749) |
 | 2026-05 | Steering Without Breaking: Mechanistically Informed Interventions for Discrete Diffusion Language Models | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2605.10971) |
 | 2026-05 | Understanding and Accelerating the Training of Masked Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2605.13026) |
@@ -55,41 +63,60 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2026-05 | Learnability-Informed Fine-Tuning of Diffusion Language Models | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2605.22939) |
 | 2026-05 | Extracting Training Data from Diffusion Language Models via Infilling | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2605.24173) |
 | 2026-05 | TUBE: Tangent Upper Bound on Evidence for Discrete Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2605.24292) |
+| 2026-05 | Targeted Remasking: Replacing Token Editing with Token-to-Mask Refinement in Discrete Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2605.26436) |
 | 2026-05 | Are Diffusion Language Models Good Database Analysts? | 11. Applications | [abs](https://arxiv.org/abs/2605.27791) |
 | 2026-05 | BlockBatch: Multi-Scale Consensus Decoding for Efficient Diffusion Language Model Inference | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2605.29233) |
+| 2026-05 | Cluster-Level Attention-Guided Parallel Decoding for Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2605.29607) |
 | 2026-05 | DLM-SWAI: Steering Diffusion Language Models Before They Unmask | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2605.29626) |
 | 2026-05 | NaRA: Noise-Aware LoRA for Parameter-Efficient Fine-Tuning of Diffusion LLMs | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2605.29716) |
 | 2026-04 | Locally Confident, Globally Stuck: The Quality-Exploration Dilemma in Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2604.00375) |
 | 2026-04 | TRIMS: Trajectory-Ranked Instruction Masked Supervision for Diffusion Language Models | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2604.00666) |
+| 2026-04 | Dependency-Guided Parallel Decoding in Discrete Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2604.02560) |
 | 2026-04 | Generative Frontiers: Why Evaluation Matters for Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2604.02718) |
 | 2026-04 | Re-Mask and Redirect: Exploiting Denoising Irreversibility in Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2604.08557) |
 | 2026-04 | Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2604.10556) |
 | 2026-04 | LaDA-Band: Language-Diffusion for Music Accompaniment | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2604.11052) |
 | 2026-04 | CAGenMol: Condition-Aware Diffusion Language Model for Goal-Directed Molecular Generation | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2604.11483) |
+| 2026-04 | Stability-Weighted Decoding for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2604.17068) |
 | 2026-04 | Measuring Temporal Linguistic Emergence in Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2604.23235) |
+| 2026-04 | DPRM: A Plug-in Doob h transform-induced Token-Ordering Module for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2604.24357) |
 | 2026-04 | On the Trainability of Masked Diffusion Language Models via Blockwise Locality | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2604.24832) |
 | 2026-04 | HIVE: Hidden-Evidence Verification for Hallucination Detection in Diffusion Large Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2604.26139) |
 | 2026-03 | DUEL: Exact Likelihood via Deterministic Unmasking | 1. Foundations & theory | [abs](https://arxiv.org/abs/2603.01367) |
 | 2026-03 | D3LM: A Discrete DNA Diffusion Language Model for Bidirectional DNA Understanding and Generation | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2603.01780) |
 | 2026-03 | DyLLM: Efficient Diffusion LLM Inference via Saliency-based Token Selection and Partial Attention | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2603.08026) |
 | 2026-03 | ES-dLLM: Efficient Inference for Diffusion Large Language Models by Early-Skipping | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2603.10088) |
+| 2026-03 | DAPD: Dependency-Aware Parallel Decoding via Attention for Diffusion LLMs | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2603.12996) |
+| 2026-03 | DOS: Dependency-Oriented Sampler for Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2603.15340) |
 | 2026-03 | Mask Is What DLLM Needs: A Masked Data Training Paradigm for Diffusion LLMs | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2603.15803) |
 | 2026-03 | DynHD: Hallucination Detection for Diffusion Large Language Models via Denoising Dynamics Deviation Learning | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2603.16459) |
 | 2026-03 | ARAM: Adaptive Guidance for RAG Masked Diffusion | 11. Applications | [abs](https://arxiv.org/abs/2603.17677) |
 | 2026-03 | Diffutron: A Masked Diffusion Language Model for Turkish Language | 11. Applications | [abs](https://arxiv.org/abs/2603.20466) |
 | 2026-03 | Autoregressive vs. Masked Diffusion Language Models: A Controlled Comparison | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2603.22075) |
+| 2026-03 | Confidence-Based Decoding is Provably Efficient for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2603.22248) |
+| 2026-02 | Generation Order and Parallel Decoding in Masked Diffusion Models: An Information-Theoretic Perspective | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.00286) |
 | 2026-02 | Safer by Diffusion, Broken by Context: Diffusion LLM's Safety Blessing and Its Failure Mode | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2602.00388) |
 | 2026-02 | Dynamic Expert Sharing: Decoupling Memory from Parallelism in Mixture-of-Experts Diffusion LLMs | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2602.00879) |
 | 2026-02 | Sentence Curve Language Models | 11. Applications | [abs](https://arxiv.org/abs/2602.01807) |
+| 2026-02 | Unifying Masked Diffusion Models with Various Generation Orders and Beyond | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.02112) |
 | 2026-02 | Step-Wise Refusal Dynamics in Autoregressive and Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2602.02600) |
+| 2026-02 | Training-Free Self-Correction for Multimodal Masked Diffusion Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.02927) |
+| 2026-02 | CoRe: Context-Robust Remasking for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.04096) |
 | 2026-02 | DLM-Scope: Mechanistic Interpretability of Diffusion Language Models via Sparse Autoencoders | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2602.05859) |
+| 2026-02 | DSB: Dynamic Sliding Block Scheduling for Diffusion LLMs | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.05992) |
 | 2026-02 | DLLM-Searcher: dLLMs as Search Agents | 6. Coding & agents | [abs](https://arxiv.org/abs/2602.07035) |
 | 2026-02 | DLLM Agent: See Farther, Run Faster | 11. Applications | [abs](https://arxiv.org/abs/2602.07451) |
 | 2026-02 | TDGNet: Hallucination Detection in Diffusion Language Models via Temporal Dynamic Graphs | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2602.08048) |
 | 2026-02 | VocalNet-MDM: Streaming Speech LLM via Masked Diffusion | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2602.08607) |
+| 2026-02 | Where-to-Unmask: Ground-Truth-Guided Unmasking Order Learning for Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.09501) |
+| 2026-02 | Learn from Your Mistakes: Self-Correcting Masked Diffusion Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.11590) |
 | 2026-02 | DiffuRank: Effective Document Reranking with Diffusion Language Models | 11. Applications | [abs](https://arxiv.org/abs/2602.12528) |
 | 2026-02 | Scaling Beyond Masked Diffusion Language Models | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2602.15014) |
+| 2026-02 | Why Any-Order Autoregressive Models Need Two-Stream Attention: A Structural-Semantic Tradeoff | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.16092) |
+| 2026-02 | Adaptation to Intrinsic Dependence in Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2602.20126) |
+| 2026-01 | STaRR: Spatial-Temporal Token-Dynamics-Aware Responsive Remasking for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2601.04205) |
 | 2026-01 | Agents of Diffusion: Enhancing Diffusion Language Models with Multi-Agent Reinforcement Learning for Structured Data Generation (Extended Version) | 11. Applications | [abs](https://arxiv.org/abs/2601.07152) |
+| 2026-01 | Beyond Hard Masks: Progressive Token Evolution for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2601.07351) |
 | 2026-01 | Revealing the Attention Floating Mechanism in Masked Diffusion Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2601.07894) |
 | 2026-01 | SPREAD: RAG for Diffusion LMs | 11. Applications | [abs](https://arxiv.org/abs/2601.11342) |
 | 2026-01 | LR-DWM: Efficient Watermarking for Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2601.12376) |
@@ -101,6 +128,7 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2026-01 | Auto-Regressive Masked Diffusion Models | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2601.16971) |
 | 2026-01 | Masked Diffusion Generative Recommendation | 11. Applications | [abs](https://arxiv.org/abs/2601.19501) |
 | 2026-01 | Membership Inference Attacks Against Fine-tuned Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2601.20125) |
+| 2026-01 | Improving Diffusion Language Model Decoding through Joint Search in Generation Order and Token Space | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2601.20339) |
 | 2026-01 | NPU Design for Diffusion Language Model Inference | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2601.20706) |
 | 2026-01 | ILRR: Inference-Time Steering Method for Masked Diffusion Language Models | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2601.21647) |
 | 2026-01 | Tuning the Implicit Regularizer of Masked Diffusion Language Models: Enhancing Generalization via Insights from $k$-Parity | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2601.22450) |
@@ -110,16 +138,21 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2025-12 | Corrective Diffusion Language Models | 11. Applications | [abs](https://arxiv.org/abs/2512.15596) |
 | 2025-12 | LLaDA 2.0 — Scaling to 100B | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2512.15745) |
 | 2025-12 | Taming the Memory Footprint Crisis: System Design for Production Diffusion LLM Serving | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2512.17077) |
+| 2025-12 | Optimizing Decoding Paths in Masked Diffusion Models by Quantifying Uncertainty | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2512.21336) |
 | 2025-12 | Dream-VL & Dream-VLA | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2512.22615) |
 | 2025-12 | Activation Steering for Masked Diffusion Language Models | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2512.24143) |
 | 2025-11 | Unified Diffusion VLA | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2511.01718) |
+| 2025-11 | Beyond Static Cutoffs: One-Shot Dynamic Thresholding for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2511.02077) |
 | 2025-11 | Diffusion Language Models are Super Data Learners | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2511.03276) |
 | 2025-11 | LLaDA-Rec: Discrete Diffusion for Parallel Semantic ID Generation in Generative Recommendation | 11. Applications | [abs](https://arxiv.org/abs/2511.06254) |
 | 2025-11 | DiffuGR: Generative Document Retrieval with Diffusion Language Models | 11. Applications | [abs](https://arxiv.org/abs/2511.08150) |
 | 2025-11 | TiDAR: Think in Diffusion, Talk in Autoregression | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2511.08923) |
 | 2025-11 | MMaDA-Parallel: Thinking-Aware Editing & Generation | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2511.09611) |
+| 2025-11 | Bringing Stability to Diffusion: Decomposing and Reducing Variance of Training Masked Diffusion Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2511.18159) |
 | 2025-11 | Masked Diffusion Models are Secretly Learned-Order Autoregressive Models | 4. Scaling laws & training | [abs](https://arxiv.org/abs/2511.19152) |
+| 2025-11 | From Bits to Rounds: Parallel Decoding with Exploration for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2511.21103) |
 | 2025-11 | Masked Diffusion for Generative Recommendation | 11. Applications | [abs](https://arxiv.org/abs/2511.23021) |
+| 2025-10 | Fine-Tuning Masked Diffusion for Provable Self-Correction | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2510.01384) |
 | 2025-10 | DiFFPO: Reason Fast and Furious via RL | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2510.02212) |
 | 2025-10 | DMark: Order-Agnostic Watermarking for dLLMs | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2510.02902) |
 | 2025-10 | CoDA: Coding LM via Diffusion Adaptation | 6. Coding & agents | [abs](https://arxiv.org/abs/2510.03270) |
@@ -130,6 +163,7 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2025-10 | Self Speculative Decoding for dLLMs | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2510.04147) |
 | 2025-10 | Exploring the Power of Diffusion Large Language Models for Software Engineering: An Empirical Investigation | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2510.04605) |
 | 2025-10 | ParallelBench: Trade-offs of Parallel Decoding | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2510.04767) |
+| 2025-10 | Improving Discrete Diffusion Unmasking Policies Beyond Explicit Reference Policies | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2510.05725) |
 | 2025-10 | CreditDecoding: Trace Credits | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2510.06133) |
 | 2025-10 | SDAR: Synergistic Diffusion-AutoRegression | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2510.06303) |
 | 2025-10 | Lumina-DiMOO: Omni Diffusion LLM | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2510.06308) |
@@ -143,19 +177,26 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2025-10 | Discrete State Diffusion: A Sample-Complexity Perspective | 1. Foundations & theory | [abs](https://arxiv.org/abs/2510.10854) |
 | 2025-10 | DiSTAR: Discrete Diffusion over Token AR Representation | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2510.12210) |
 | 2025-10 | Attention Sinks in Diffusion Language Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2510.15731) |
+| 2025-10 | Soft-Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2510.17206) |
 | 2025-10 | Latent-Augmented Discrete Diffusion | 1. Foundations & theory | [abs](https://arxiv.org/abs/2510.18114) |
 | 2025-10 | How Efficient Are Diffusion Language Models? A Critical Examination of Efficiency Evaluation Practices | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2510.18480) |
 | 2025-10 | DiffGRM: Diffusion-based Generative Recommendation Model | 11. Applications | [abs](https://arxiv.org/abs/2510.21805) |
+| 2025-10 | Parallel Sampling from Masked Diffusion Models via Conditional Independence Testing | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2510.21961) |
 | 2025-10 | Variational Masked Diffusion Models | 1. Foundations & theory | [abs](https://arxiv.org/abs/2510.23606) |
 | 2025-10 | Aligning Diffusion Language Models via Unpaired Preference Optimization | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2510.23658) |
+| 2025-10 | Error Bounds and Optimal Schedules for Masked Diffusions with Factorized Approximations | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2510.25544) |
 | 2025-09 | Dream-Coder 7B | 6. Coding & agents | [abs](https://arxiv.org/abs/2509.01142) |
 | 2025-09 | Set Block Decoding | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2509.04185) |
+| 2025-09 | Masked Diffusion Language Models with Frequency-Informed Training | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2509.05056) |
 | 2025-09 | TraDo-8B / TraceRL: Trajectory-Aware RL | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2509.06949) |
 | 2025-09 | Beyond Autoregression: Empirical Study of dLLMs for Code | 6. Coding & agents | [abs](https://arxiv.org/abs/2509.11252) |
 | 2025-09 | Lavida-O: Elastic Masked Diffusion for Unified Understanding & Generation | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2509.19244) |
 | 2025-09 | Discrete Diffusion for Text-Aligned Speech Tokens | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2509.20060) |
 | 2025-09 | GIFT: Guided Importance-Aware Fine-Tuning for Diffusion Language Models | 7. RL, post-training & alignment | [abs](https://arxiv.org/abs/2509.20863) |
 | 2025-09 | d²Cache: Dual Adaptive Caching | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2509.23094) |
+| 2025-09 | Planner Aware Path Learning in Diffusion Language Models Training | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2509.23405) |
+| 2025-09 | RIV: Recursive Introspection Mask Diffusion Vision Language Model | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2509.23625) |
+| 2025-09 | Don't Settle Too Early: Self-Reflective Remasking for Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2509.23653) |
 | 2025-09 | SDLM: Sequential Diffusion Language Models | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2509.24007) |
 | 2025-09 | DiffuGuard: Intrinsic Safety Lost & Found in dLLMs | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2509.24296) |
 | 2025-09 | Watermarking Diffusion Language Models | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2509.24368) |
@@ -165,14 +206,17 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2025-09 | RFG: Reward-Free Guidance test-time scaling | 5. Reasoning | [abs](https://arxiv.org/abs/2509.25604) |
 | 2025-09 | dVLA: Diffusion VLA w/ Multimodal CoT | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2509.25681) |
 | 2025-09 | Fast-dLLM v2: Efficient Block-Diffusion LLM | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2509.26328) |
+| 2025-09 | AdaBlock-dLLM: Semantic-Aware Diffusion LLM Inference via Adaptive Block Size | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2509.26432) |
 | 2025-09 | dParallel: Learnable Parallel Decoding | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2509.26488) |
 | 2025-08 | Seed Diffusion | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2508.02193) |
 | 2025-08 | Sparse-dLLM: Dynamic Cache Eviction | 9. Inference & acceleration | [abs](https://arxiv.org/abs/2508.02558) |
+| 2025-08 | The Cosine Schedule is Fisher-Rao-Optimal for Masked Discrete Diffusion Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2508.04884) |
 | 2025-08 | A Survey on Parallel Text Generation: From Parallel Decoding to Diffusion LMs | Surveys & overviews | [abs](https://arxiv.org/abs/2508.08712) |
 | 2025-08 | Constrained Decoding of dLLMs with CFGs | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2508.10111) |
 | 2025-08 | A Survey on Diffusion Language Models | Surveys & overviews | [abs](https://arxiv.org/abs/2508.10875) |
 | 2025-08 | Where to Start Alignment? Diffusion Large Language Model May Demand a Distinct Position | 12. Safety, watermarking & robustness | [abs](https://arxiv.org/abs/2508.12398) |
 | 2025-08 | Empirical Analysis of Decoding Biases in Masked Diffusion Models | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2508.13021) |
+| 2025-08 | MDPO: Overcoming the Training-Inference Divide of Masked Diffusion Language Models | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2508.13148) |
 | 2025-08 | DLLMQuant | 13. Efficiency: quantization | [abs](https://arxiv.org/abs/2508.14090) |
 | 2025-08 | Cross-Modality Controlled Molecule Generation with Diffusion Language Model | 15. "Language of X": biology & speech | [abs](https://arxiv.org/abs/2508.14748) |
 | 2025-08 | Quantization Meets dLLMs: A Systematic PTQ Study | 13. Efficiency: quantization | [abs](https://arxiv.org/abs/2508.14896) |
@@ -225,6 +269,7 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2025-03 | Constrained Discrete Diffusion | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2503.09790) |
 | 2025-03 | UniDisc: Unified Multimodal Discrete Diffusion | 8. Multimodal & unified diffusion | [abs](https://arxiv.org/abs/2503.20853) |
 | 2025-02 | Fine-Tuning Discrete Diffusion Models with Policy Gradient Methods | 10. Guidance, control & constrained decoding | [abs](https://arxiv.org/abs/2502.01384) |
+| 2025-02 | Path Planning for Masked Diffusion Model Sampling | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2502.03540) |
 | 2025-02 | Train for the Worst, Plan for the Best (token ordering) | 1. Foundations & theory | [abs](https://arxiv.org/abs/2502.06768) |
 | 2025-02 | Theoretical Benefit and Limitation of Diffusion Language Model | 16. Evaluation & benchmarks | [abs](https://arxiv.org/abs/2502.09622) |
 | 2025-02 | LLaDA — Large Language Diffusion Models | 3. Large-scale diffusion LLMs (dLLMs) | [abs](https://arxiv.org/abs/2502.09992) |
@@ -327,6 +372,7 @@ Complete, sortable index of **311 papers** in [Awesome Language Diffusion](READM
 | 2022-08 | Analog Bits / Bit Diffusion | 2. Early & continuous text diffusion | [abs](https://arxiv.org/abs/2208.04202) |
 | 2022-07 | Classifier-Free Diffusion Guidance | 1. Foundations & theory | [abs](https://arxiv.org/abs/2207.12598) |
 | 2022-06 | Latent Diffusion Energy-Based Model for Interpretable Text Modeling | 2. Early & continuous text diffusion | [abs](https://arxiv.org/abs/2206.05895) |
+| 2022-05 | Training and Inference on Any-Order Autoregressive Models the Right Way | 17. Masking, noise schedules & unmasking order | [abs](https://arxiv.org/abs/2205.13554) |
 | 2022-05 | Diffusion-LM Improves Controllable Text Generation | 2. Early & continuous text diffusion | [abs](https://arxiv.org/abs/2205.14217) |
 | 2022-05 | A Continuous-Time Framework for Discrete Denoising Models | 1. Foundations & theory | [abs](https://arxiv.org/abs/2205.14987) |
 | 2021-12 | SUNDAE: Step-unrolled Denoising Autoencoders | 2. Early & continuous text diffusion | [abs](https://arxiv.org/abs/2112.06749) |

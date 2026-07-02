@@ -2,15 +2,15 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](LICENSE)
-![Papers](https://img.shields.io/badge/papers-311-blue)
-![Topics](https://img.shields.io/badge/topics-17-orange)
+![Papers](https://img.shields.io/badge/papers-356-blue)
+![Topics](https://img.shields.io/badge/topics-18-orange)
 ![Last updated](https://img.shields.io/badge/updated-2026--07-informational)
 
 > A curated, aggressively-sourced list of papers, models, code, and resources on **diffusion models for language** — text, code, and discrete-token sequences.
 >
-> **311 verified references** spanning foundations → discrete/masked theory → 7B–100B diffusion LLMs → multimodal/VLA, reasoning, coding, RL, inference, safety, and evaluation.
+> **356 verified references** spanning foundations → discrete/masked theory → 7B–100B diffusion LLMs → multimodal/VLA, reasoning, coding, RL, masking & unmasking strategies, inference, safety, and evaluation.
 
-> 📊 **[PAPERS.md](PAPERS.md) — full sortable master index of all 311 papers with years**, newest-first. Read the topical sections below to learn; scan `PAPERS.md` to browse everything by date.
+> 📊 **[PAPERS.md](PAPERS.md) — full sortable master index of all 356 papers with years**, newest-first. Read the topical sections below to learn; scan `PAPERS.md` to browse everything by date.
 
 Language diffusion (a.k.a. **diffusion language models, dLLMs, discrete/masked diffusion LMs**) generates text by *iteratively denoising* a whole sequence in parallel instead of predicting one token left-to-right. In 2024–2026 this went from a research curiosity to **8B–100B open models (LLaDA, Dream, LLaDA-MoE/2.0)** and **frontier products (Mercury, Gemini Diffusion, Seed Diffusion)** that reach **1000–2000+ tokens/s**.
 
@@ -52,8 +52,9 @@ This list is organized so you can read it as a *learning path* (foundations → 
 - [14. Embeddings, energy-based & Bayesian flow networks](#14-embeddings-energy-based--bayesian-flow-networks)
 - [15. "Language of X": biology & speech](#15-language-of-x-biology--speech)
 - [16. Evaluation & benchmarks](#16-evaluation--benchmarks)
-- [17. Extended index — deep gap-sweep (2022–2026)](#17-extended-index--deep-gap-sweep-20222026)
-- [📊 PAPERS.md — full sortable master index (311 papers, with years)](PAPERS.md)
+- [17. Masking, noise schedules & unmasking order](#17-masking-noise-schedules--unmasking-order)
+- [18. Extended index — deep gap-sweep (2022–2026)](#18-extended-index--deep-gap-sweep-20222026)
+- [📊 PAPERS.md — full sortable master index (356 papers, with years)](PAPERS.md)
 - [Resources](#resources)
   - [Code & checkpoints](#code--checkpoints)
   - [Libraries & frameworks](#libraries--frameworks)
@@ -523,11 +524,69 @@ Discrete diffusion over non-text token sequences — the techniques transfer dir
 
 ---
 
-## 17. Extended index — deep gap-sweep (2022–2026)
+## 17. Masking, noise schedules & unmasking order
+
+The two design choices that most define a diffusion LM's behavior: the **forward** side (how tokens are corrupted — noise/masking schedule, masking rate, curriculum) and the **reverse** side (which masked positions to fill next, how many per step, and whether committed tokens can be **remasked** and corrected). This section collects work dedicated to those choices.
+
+**Already elsewhere in this list (core references):** [Informed Correctors for Discrete Diffusion](https://arxiv.org/abs/2407.21243) · [DDPD — Think While You Generate (Planned Denoising)](https://arxiv.org/abs/2410.06264) · [Train for the Worst, Plan for the Best (token ordering)](https://arxiv.org/abs/2502.06768) · [ReMDM — Remasking + inference-time scaling](https://arxiv.org/abs/2503.00307) · [EB-Sampler — Entropy-Bounded Unmasking](https://arxiv.org/abs/2505.24857) · [SlowFast Sampling — three golden principles](https://arxiv.org/abs/2506.10848) · [Dilated Scheduling (Plan for Speed)](https://arxiv.org/abs/2506.19037) · [Any-Order GPT as Masked Diffusion Model](https://arxiv.org/abs/2506.19935) · [WINO — Wide-In, Narrow-Out revokable decoding](https://arxiv.org/abs/2507.18578) · [Empirical Analysis of Decoding Biases in MDMs](https://arxiv.org/abs/2508.13021) · [Prophet — dLLMs Know the Answer Before Decoding](https://arxiv.org/abs/2508.19982) · [Set Block Decoding](https://arxiv.org/abs/2509.04185) · [Masked Diffusion Models are Secretly Learned-Order AR](https://arxiv.org/abs/2511.19152) · [Learning Unmasking Policies for dLLMs](https://arxiv.org/abs/2512.09106) · [Mask Is What DLLM Needs (priority masking)](https://arxiv.org/abs/2603.15803) · [Understanding & Accelerating MDM Training (bell-shaped schedule)](https://arxiv.org/abs/2605.13026) · [Re-evaluating Confidence Remasking](https://arxiv.org/abs/2606.12232)
+
+**Net-new from the focused gap-sweep (45 papers, individually link-verified), oldest→newest:**
+
+| Year | Paper | Links | TL;DR |
+|---|---|---|---|
+| 2022-05 | **Training and Inference on Any-Order Autoregressive Models the Right Way** | [abs](https://arxiv.org/abs/2205.13554) | Foundational theory paper on any-order autoregressive models that removes redundancy in order-agnostic training/inference, underpinning later masked-diffusion order-equivalence results. |
+| 2025-02 | **Path Planning for Masked Diffusion Model Sampling** | [abs](https://arxiv.org/abs/2502.03540) | Decomposes each generation step into a planner (which positions to update, including remasking) and a denoiser, generalizing existing order heuristics. |
+| 2025-08 | **The Cosine Schedule is Fisher-Rao-Optimal for Masked Discrete Diffusion Models** | [abs](https://arxiv.org/abs/2508.04884) | Uses information geometry to show the widely used cosine noise schedule is Fisher-Rao-optimal for masked discrete diffusion, giving theory for schedule choice. |
+| 2025-08 | **MDPO: Overcoming the Training-Inference Divide of Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2508.13148) | Analyzes the mismatch where training masks tokens randomly while inference reveals structured order, targeting the core train-vs-inference ordering discrepancy in masked diffusion LMs. |
+| 2025-09 | **Masked Diffusion Language Models with Frequency-Informed Training** | [abs](https://arxiv.org/abs/2509.05056) | Compares linear/cosine noise schedules and NELBO weighting schemes, then adds frequency-informed curriculum masking that raises masking probability for rare tokens. |
+| 2025-09 | **Planner Aware Path Learning in Diffusion Language Models Training** | [abs](https://arxiv.org/abs/2509.23405) | Introduces a planned ELBO (P-ELBO) so training aligns with planner-based inference that iteratively selects where to denoise along the sequence. |
+| 2025-09 | **RIV: Recursive Introspection Mask Diffusion Vision Language Model** | [abs](https://arxiv.org/abs/2509.23625) | An introspection model detects errors in generated sequences and recursively alternates unmask, error-detection, and remask to self-correct committed tokens. |
+| 2025-09 | **Don't Settle Too Early: Self-Reflective Remasking for Diffusion Language Models** | [abs](https://arxiv.org/abs/2509.23653) | Introduces RemeDi, jointly predicting tokens and per-token confidence so already-revealed low-confidence tokens are remasked and resampled instead of being permanently fixed. |
+| 2025-09 | **AdaBlock-dLLM: Semantic-Aware Diffusion LLM Inference via Adaptive Block Size** | [abs](https://arxiv.org/abs/2509.26432) | Training-free scheduler that adapts block size at runtime from confidence-volatility bands, directly targeting block-size selection for parallel decoding. |
+| 2025-10 | **Fine-Tuning Masked Diffusion for Provable Self-Correction** | [abs](https://arxiv.org/abs/2510.01384) | PRISM adds a plug-in remasking self-correction loss that provably learns per-token quality scores to detect and revise committed tokens at inference without RL or a verifier. |
+| 2025-10 | **Improving Discrete Diffusion Unmasking Policies Beyond Explicit Reference Policies** | [abs](https://arxiv.org/abs/2510.05725) | Replaces max-confidence heuristics with a learned scheduler formulated as a KL-regularized MDP to decide which position to unmask next. |
+| 2025-10 | **Soft-Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2510.17206) | Soft-masking blends mask and top-k predicted embeddings so partial information persists and revealed positions remain revisable across iterative refinement steps. |
+| 2025-10 | **Parallel Sampling from Masked Diffusion Models via Conditional Independence Testing** | [abs](https://arxiv.org/abs/2510.21961) | PUNT is a model-agnostic sampler that tests token conditional independence and drops conflicting low-confidence predictions to safely raise the number of tokens unmasked in parallel. |
+| 2025-10 | **Error Bounds and Optimal Schedules for Masked Diffusions with Factorized Approximations** | [abs](https://arxiv.org/abs/2510.25544) | Derives dimension-free error bounds and identifies the optimal (non-constant) masking schedule as a function of the data's information profile for masked discrete diffusion. |
+| 2025-11 | **Beyond Static Cutoffs: One-Shot Dynamic Thresholding for Diffusion Language Models** | [abs](https://arxiv.org/abs/2511.02077) | Calibrates confidence thresholds on a single sequence and reuses them to dynamically set how many tokens are committed per parallel decoding step. |
+| 2025-11 | **Bringing Stability to Diffusion: Decomposing and Reducing Variance of Training Masked Diffusion Models** | [abs](https://arxiv.org/abs/2511.18159) | Decomposes MDM training variance into masking-pattern, masking-rate, and data noise and proposes a Pareto-optimal time-sampler that reshapes the training time-sampling distribution. |
+| 2025-11 | **From Bits to Rounds: Parallel Decoding with Exploration for Diffusion Language Models** | [abs](https://arxiv.org/abs/2511.21103) | Explore-Then-Exploit combines cross-block decoding with targeted exploration of high-uncertainty tokens to maximize information throughput (tokens committed) per denoising round. |
+| 2025-12 | **Optimizing Decoding Paths in Masked Diffusion Models by Quantifying Uncertainty** | [abs](https://arxiv.org/abs/2512.21336) | Formalizes Path Uncertainty and a Denoising Entropy metric to characterize and select optimal decoding orders in masked diffusion, giving a principled theory of which generation path to follow. |
+| 2026-01 | **STaRR: Spatial-Temporal Token-Dynamics-Aware Responsive Remasking for Diffusion Language Models** | [abs](https://arxiv.org/abs/2601.04205) | Training-free responsive remasking that uses temporal-variance and spatial-deviance token dynamics to decide which committed tokens to revert to masks instead of static confidence thresholds. |
+| 2026-01 | **Beyond Hard Masks: Progressive Token Evolution for Diffusion Language Models** | [abs](https://arxiv.org/abs/2601.07351) | EvoToken-DLM replaces binary masking with evolving soft token distributions enabling a revisable, progressive mask-to-token transition during iterative refinement. |
+| 2026-01 | **Improving Diffusion Language Model Decoding through Joint Search in Generation Order and Token Space** | [abs](https://arxiv.org/abs/2601.20339) | Proposes Order-Token Search that beam-searches jointly over generation order and token values rather than committing to one decoding trajectory. |
+| 2026-02 | **Generation Order and Parallel Decoding in Masked Diffusion Models: An Information-Theoretic Perspective** | [abs](https://arxiv.org/abs/2602.00286) | Provides a unified information-theoretic framework decoupling order sensitivity from parallelization bias, analyzing confidence/entropy/margin ordering heuristics. |
+| 2026-02 | **Unifying Masked Diffusion Models with Various Generation Orders and Beyond** | [abs](https://arxiv.org/abs/2602.02112) | Treats the masking scheduler as a modeling component, replacing uniform random masking with order-induced corruption distributions for token/position-dependent forward masking. |
+| 2026-02 | **Training-Free Self-Correction for Multimodal Masked Diffusion Models** | [abs](https://arxiv.org/abs/2602.02927) | Exploits pretrained MDM inductive biases to allow revision of earlier errors during sampling, making normally irreversible committed-token updates revocable without extra training. |
+| 2026-02 | **CoRe: Context-Robust Remasking for Diffusion Language Models** | [abs](https://arxiv.org/abs/2602.04096) | Identifies context-brittle tokens by probing sensitivity to masked-context perturbations to decide which positions to revise versus keep during decoding. |
+| 2026-02 | **DSB: Dynamic Sliding Block Scheduling for Diffusion LLMs** | [abs](https://arxiv.org/abs/2602.05992) | Uses dynamically sized sliding blocks adapted to semantic difficulty with a specialized KV-cache, choosing how large each denoising block should be. |
+| 2026-02 | **Where-to-Unmask: Ground-Truth-Guided Unmasking Order Learning for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2602.09501) | Trains a supervised planning model with a Gt-Margin score to imitate an oracle unmasking order, directly learning which masked position to fill next. |
+| 2026-02 | **Learn from Your Mistakes: Self-Correcting Masked Diffusion Models** | [abs](https://arxiv.org/abs/2602.11590) | Proposes Progressive Self-Correction (ProSeCo) training so the model both unmasks and iteratively corrects previously committed tokens during generation. |
+| 2026-02 | **Why Any-Order Autoregressive Models Need Two-Stream Attention: A Structural-Semantic Tradeoff** | [abs](https://arxiv.org/abs/2602.16092) | Uses the masked-diffusion / any-order autoregressive equivalence to prove a structural-semantic tension that theoretically explains why arbitrary-order token prediction requires two-stream attention. |
+| 2026-02 | **Adaptation to Intrinsic Dependence in Diffusion Language Models** | [abs](https://arxiv.org/abs/2602.20126) | Proposes a distribution-agnostic, hyperparameter-free adaptive schedule for diffusion LMs that randomizes tokens revealed per step to match the target's dependence structure. |
+| 2026-03 | **DAPD: Dependency-Aware Parallel Decoding via Attention for Diffusion LLMs** | [abs](https://arxiv.org/abs/2603.12996) | Builds a conditional dependency graph from self-attention and reduces per-step parallel unmasking to selecting an independent set, avoiding co-updating strongly coupled tokens. |
+| 2026-03 | **DOS: Dependency-Oriented Sampler for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2603.15340) | Approximates inter-token dependencies from attention matrices to decide which masked positions can be safely unmasked together per step. |
+| 2026-03 | **Confidence-Based Decoding is Provably Efficient for Diffusion Language Models** | [abs](https://arxiv.org/abs/2603.22248) | Gives the first formal efficiency guarantees for confidence- and entropy-sum-based unmasking order selection in masked diffusion sampling. |
+| 2026-04 | **Dependency-Guided Parallel Decoding in Discrete Diffusion Language Models** | [abs](https://arxiv.org/abs/2604.02560) | DEMASK trains a lightweight dependency predictor and greedily selects positions with bounded cumulative dependency to unmask simultaneously, directly deciding how many tokens to commit per step. |
+| 2026-04 | **Stability-Weighted Decoding for Diffusion Language Models** | [abs](https://arxiv.org/abs/2604.17068) | Selects which tokens are safe to unmask using temporal KL stability between consecutive prediction distributions instead of raw confidence/entropy/margin. |
+| 2026-04 | **DPRM: A Plug-in Doob h transform-induced Token-Ordering Module for Diffusion Language Models** | [abs](https://arxiv.org/abs/2604.24357) | A plug-in module that modifies only the ordering policy via a Doob h-transform to choose token order without a fixed left-to-right constraint. |
+| 2026-05 | **Edit-Based Refinement for Parallel Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2605.09603) | ME-DLM refines an initial parallel generation via replacement, deletion, and insertion edits conditioned on the full sequence, a backward self-correction pass over committed tokens. |
+| 2026-05 | **Targeted Remasking: Replacing Token Editing with Token-to-Mask Refinement in Discrete Diffusion Language Models** | [abs](https://arxiv.org/abs/2605.26436) | Training-free Token-to-Mask remasking resets suspected-wrong committed tokens back to [MASK] so the mask-filling steps re-predict them under cleaner context. |
+| 2026-05 | **Cluster-Level Attention-Guided Parallel Decoding for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2605.29607) | Groups high-confidence predictions into clusters and uses attention to pick compatible clusters for simultaneous commitment, setting how many tokens unmask per step. |
+| 2026-06 | **Revise, Don't Freeze: Sampler-Matched Training for Self-Correcting Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.01026) | Presents D3IM, a parameter-free sampler enabling direct visible-to-visible revision of committed tokens plus SCOPE training to overcome preservation bias. |
+| 2026-06 | **Supportive Token Revealing for Fast Diffusion Language Model Decoding** | [abs](https://arxiv.org/abs/2606.04236) | AXON selects which confident reveals best support subsequent denoising rather than only the safest, changing the set and count of tokens unmasked in parallel. |
+| 2026-06 | **NAVIRA: Decoupled Stochastic Remasking for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.06031) | Decouples token-quality assessment from regeneration and uses temperature-controlled stochastic remasking so early parallel-decoding errors can be revoked and re-decoded from cleaner context. |
+| 2026-06 | **Attention-Discounted Adaptive Sampler for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.10829) | ADAS reranks parallel unmasking candidates by discounting tokens that attend to uncertain just-committed positions, adaptively governing dependency-aware parallel commitment. |
+| 2026-06 | **Neither Parallel Nor Sequential: How DiffusionGemma Actually Commits Tokens** | [abs](https://arxiv.org/abs/2606.14620) | Empirically analyzes the real token-commitment order of a large diffusion LLM, revealing a partial left-to-right bias between strict sequential and parallel unmasking. |
+| 2026-06 | **Mean-Field Parallel Decoding for Discrete Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.15805) | Assigns commit scores to masked positions and refines them via pairwise interactions to coordinate how many tokens can be generated simultaneously per step. |
+
+---
+
+## 18. Extended index — deep gap-sweep (2022–2026)
 
 An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and individually link-verified. Grouped by topic, oldest→newest. See [PAPERS.md](PAPERS.md) for the full sortable master table of every paper in this repo.
 
-### 17 · 10. Guidance, control & constrained decoding
+### 18 · 10. Guidance, control & constrained decoding
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -548,7 +607,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-05 | **Constrained Code Generation with Discrete Diffusion** | [abs](https://arxiv.org/abs/2605.16829) | CDC is a training-free neurosymbolic sampler that injects constraint-aware denoising operators into discrete diffusion to enforce correctness, security, and syntax in code. |
 | 2026-05 | **DLM-SWAI: Steering Diffusion Language Models Before They Unmask** | [abs](https://arxiv.org/abs/2605.29626) | A training-free steering method that biases per-step token distributions with pre-computed token-level style scores for controllable DLM generation without auxiliary models. |
 
-### 17 · 11. Applications
+### 18 · 11. Applications
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -576,7 +635,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-05 | **Are Diffusion Language Models Good Database Analysts?** | [abs](https://arxiv.org/abs/2605.27791) | First systematic study of diffusion language models for text-to-SQL, introducing the SQL-D1 agentic framework and showing structural-robustness advantages over left-to-right decoding. |
 | 2026-06 | **Dynamic Infilling Anchors for Format-Constrained Generation in Diffusion Large Language Models** | [abs](https://arxiv.org/abs/2606.04535) | Training-free method that dynamically sizes end-anchors so diffusion LLMs produce parseable JSON/reasoning templates without truncation, boosting GSM8K and MATH accuracy. |
 
-### 17 · 12. Safety, watermarking & robustness
+### 18 · 12. Safety, watermarking & robustness
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -594,7 +653,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-06 | **MaskForge: Structure-Aware Adaptive Attacks for Jailbreaking Diffusion Large Language Models** | [abs](https://arxiv.org/abs/2606.04027) | Fully black-box adaptive red-teaming that optimizes over a growing library of structural mask patterns specific to dLLM denoising. |
 | 2026-06 | **Global Sketch-Based Watermarking for Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.04486) | Watermarks masked dLLMs via a global vector-valued sketch over the whole sequence, using joint sampling of unresolved positions unavailable to AR schemes. |
 
-### 17 · 15. "Language of X": biology & speech
+### 18 · 15. "Language of X": biology & speech
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -612,7 +671,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-04 | **CAGenMol: Condition-Aware Diffusion Language Model for Goal-Directed Molecular Generation** | [abs](https://arxiv.org/abs/2604.11483) | Condition-aware discrete diffusion over molecular sequences coupled with reinforcement learning to align generation with non-differentiable drug-design objectives while preserving validity. |
 | 2026-06 | **Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation** | [abs](https://arxiv.org/abs/2606.19315) | First framework to train diffusion LLMs for formal theorem-proving sequences, using bidirectional in-filling for whole-proof writing and local proof correction. |
 
-### 17 · 16. Evaluation & benchmarks
+### 18 · 16. Evaluation & benchmarks
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -638,7 +697,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-06 | **Re-evaluating Confidence Remasking in Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.12232) | Rigorously re-examines confidence-based remasking and shows it brings little-to-no benefit over confidence-based unmasking while worsening diversity collapse, highlighting the need for careful decoding-configuration-aware evaluation. |
 | 2026-06 | **Diffusion Language Models: An Experimental Analysis** | [abs](https://arxiv.org/abs/2606.19475) | Systematically evaluates eight state-of-the-art dLLMs across eight benchmarks (reasoning, coding, translation, knowledge, problem solving) while dissecting the effect of denoising steps, context length, block size, and unmasking on the quality-efficiency trade-off. |
 
-### 17 · 2. Early & continuous text diffusion
+### 18 · 2. Early & continuous text diffusion
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -655,7 +714,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2024-03 | **Language Rectified Flow: Advancing Diffusion Language Generation with Probabilistic Flows** | [abs](https://arxiv.org/abs/2403.16995) | NAACL'24 work applying rectified-flow probabilistic flows to language generation as a faster alternative to standard continuous text-diffusion sampling. |
 | 2024-08 | **Diffusion Guided Language Modeling** | [abs](https://arxiv.org/abs/2408.04220) | ACL'24 Findings paper using a guided diffusion latent proposal to steer an autoregressive LM's attributes, combining AR fluency with diffusion plug-and-play control. |
 
-### 17 · 4. Scaling laws & training
+### 18 · 4. Scaling laws & training
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -668,7 +727,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-04 | **On the Trainability of Masked Diffusion Language Models via Blockwise Locality** | [abs](https://arxiv.org/abs/2604.24832) | Analyzes why random-masking masked diffusion is harder to train than AR and introduces locality-aware blockwise variants that inject left-to-right bias for more stable optimization. |
 | 2026-06 | **Where to Place the Query? Unveiling and Mitigating Positional Bias in In-Context Learning for Diffusion LLMs via Decoding Dynamics** | [abs](https://arxiv.org/abs/2606.19349) | First study of in-context learning positional bias unique to diffusion LLMs, showing query placement strongly affects accuracy and proposing adaptive placement that approaches oracle ICL performance. |
 
-### 17 · 7. RL, post-training & alignment
+### 18 · 7. RL, post-training & alignment
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
@@ -683,7 +742,7 @@ An additional **125 papers** surfaced by an aggressive multi-agent gap-sweep and
 | 2026-06 | **Knowledge Editing in Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.03924) | Transfers locate-then-edit knowledge editing to masked dLLMs (LLaDA, Dream), diagnosing multi-token edit failure and adding a correction for partially-unmasked states. |
 | 2026-06 | **TimeROME-DLM: Temporal Causal Tracing and Low-Rank Inference-Time Knowledge Editing for Masked Diffusion Language Models** | [abs](https://arxiv.org/abs/2606.12841) | First training-free, gradient-free inference-time knowledge-editing/unlearning framework for masked dLLMs via temporal causal tracing plus a closed-form low-rank edit memory. |
 
-### 17 · 9. Inference & acceleration
+### 18 · 9. Inference & acceleration
 
 | Year | Paper | Links | TL;DR |
 |---|---|---|---|
