@@ -1,0 +1,15 @@
+# Working / scratch files (not part of the published list)
+task_plan.md
+notes.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python (for any tooling scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
